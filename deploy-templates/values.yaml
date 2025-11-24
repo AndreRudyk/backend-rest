@@ -77,10 +77,11 @@ resources: {}
 livenessProbe:
   tcpSocket:
     port: http
+  initialDelaySeconds: 45 # Delay before liveness probe is initiated
 readinessProbe:
   tcpSocket:
     port: http
-  initialDelaySeconds: 20
+  initialDelaySeconds: 45 # Delay before readiness probe is initiated
 
 autoscaling:
   enabled: false
