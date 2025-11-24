@@ -116,7 +116,7 @@ public class RecordController {
     }
 
     @PostMapping("/api/records")
-    public ResponseEntity<RecordResponseDto> createRecord(RecordRequestDto requestDto) {
+    public ResponseEntity<RecordResponseDto> createRecord(@Valid @RequestBody RecordRequestDto requestDto) {
         RecordResponseDto responseDto = recordService.createRecord(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(responseDto);
