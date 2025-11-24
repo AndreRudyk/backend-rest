@@ -108,4 +108,17 @@ public class RecordController {
                     .body(Map.of("error", "Failed to delete record: " + e.getMessage()));
         }
     }
+
+    @GetMapping("/api/records")
+    public ResponseEntity<Map<String, Object>> getAllRecords() {
+        List<RecordResponseDto> allRecords = recordService.getAllRecords();
+        return ResponseEntity.ok(Map.of("records", allRecords, "total", allRecords.size()));
+    }
+
+    @PostMapping("/api/records")
+    public ResponseEntity<RecordResponseDto> createRecord(RecordRequestDto requestDto) {
+        RecordResponseDto responseDto = recordService.createRecord(requestDto);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(responseDto);
+    }
 }
